@@ -1,150 +1,114 @@
+
+/* =========================================
+    TACTILE — HOMEPAGE
+   ========================================= */
+
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  min-height: 100svh;
+  padding: 0 var(--page-gutter);
 }
 
-.main {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
-}
+/* INTRODUCTION */
 
 .intro {
+  min-height: calc(100svh - 104px);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
   justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  padding: 100px 0;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+/* SMALL EDITORIAL LABEL */
+
+.eyebrow {
+  margin: 0 0 36px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+/* MAIN TYPOGRAPHY */
+
+.title {
+  max-width: 1200px;
+  margin: 0;
+  font-size: clamp(64px, 10vw, 160px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.075em;
 }
 
-/* Enable hover only on non-touch devices */
+.title em {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+
+/* =========================================
+    INTERACTION — THE SENSATION OF TOUCH
+   ========================================= */
+
+.touch {
+  display: inline-block;
+  transform-origin: center 75%;
+
+  transition: transform 1000ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*
+  A subtle compression when the pointer
+  makes contact with the word.
+*/
+
 @media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .touch:hover {
+    transform: scale(0.97, 0.94);
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+/* DESCRIPTION */
+
+.description {
+  max-width: 360px;
+  margin: 60px 5% 0 auto;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+  .intro {
+    padding: 80px 0;
   }
 
   .intro {
-    gap: 16px;
+    min-height: calc(100svh - 80px);
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+  .title {
+    font-size: clamp(60px, 13vw, 100px);
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .description {
+    margin: 48px 0 0;
   }
 }
 
-.code {
-  font-family: var(--font-geist-mono);
-  font-size: 0.9em;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  padding: 0.1em 0.4em;
-  border-radius: 6px;
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .touch {
+    transition: none;
+    transform: none;
+  }
+
+  .touch:hover {
+    transform: none;
+  }
 }
